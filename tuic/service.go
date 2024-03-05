@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/sagernet/quic-go"
-	"github.com/sagernet/sing-quic"
+	qtls "github.com/sagernet/sing-quic"
 	"github.com/sagernet/sing/common"
 	"github.com/sagernet/sing/common/auth"
 	"github.com/sagernet/sing/common/baderror"
@@ -77,7 +77,7 @@ func NewService[U comparable](options ServiceOptions) (*Service[U], error) {
 	switch options.CongestionControl {
 	case "":
 		options.CongestionControl = "cubic"
-	case "cubic", "new_reno", "bbr":
+	case "cubic", "new_reno", "bbr", "brutal":
 	default:
 		return nil, E.New("unknown congestion control algorithm: ", options.CongestionControl)
 	}
