@@ -9,9 +9,9 @@ import (
 	"runtime"
 	"sync"
 
+	qtls "github.com/minjunlan/sing-quic"
+	hyCC "github.com/minjunlan/sing-quic/hysteria/congestion"
 	"github.com/sagernet/quic-go"
-	"github.com/sagernet/sing-quic"
-	hyCC "github.com/sagernet/sing-quic/hysteria/congestion"
 	"github.com/sagernet/sing/common/baderror"
 	"github.com/sagernet/sing/common/bufio"
 	"github.com/sagernet/sing/common/debug"

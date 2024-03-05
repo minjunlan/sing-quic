@@ -4,11 +4,11 @@ import (
 	"context"
 	"time"
 
+	congestion_meta1 "github.com/minjunlan/sing-quic/congestion_meta1"
+	congestion_meta2 "github.com/minjunlan/sing-quic/congestion_meta2"
+	hyCC "github.com/minjunlan/sing-quic/hysteria/congestion"
 	"github.com/sagernet/quic-go"
 	"github.com/sagernet/quic-go/congestion"
-	congestion_meta1 "github.com/sagernet/sing-quic/congestion_meta1"
-	congestion_meta2 "github.com/sagernet/sing-quic/congestion_meta2"
-	hyCC "github.com/sagernet/sing-quic/hysteria/congestion"
 	"github.com/sagernet/sing/common/ntp"
 )
 

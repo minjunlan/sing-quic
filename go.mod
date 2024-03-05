@@ -1,4 +1,4 @@
-module github.com/sagernet/sing-quic
+module github.com/minjunlan/sing-quic
 
 go 1.20
 
