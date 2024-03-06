@@ -50,6 +50,6 @@ func setCongestion(ctx context.Context, connection quic.Connection, congestionNa
 			congestion.ByteCount(congestion_meta1.InitialCongestionWindow),
 		))
 	case "brutal":
-		connection.SetCongestionControl(hyCC.NewBrutalSender(10000000, true, nil))
+		connection.SetCongestionControl(hyCC.NewBrutalSender(10000000, false, nil))
 	}
 }
