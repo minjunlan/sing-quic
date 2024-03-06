@@ -12,7 +12,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sagernet/quic-go"
+	quic "github.com/sagernet/quic-go"
 	"github.com/sagernet/sing/common"
 	"github.com/sagernet/sing/common/atomic"
 	"github.com/sagernet/sing/common/buf"
