@@ -294,7 +294,7 @@ func (c *udpPacketConn) WriteTo(p []byte, addr net.Addr) (n int, err error) {
 	if err == nil {
 		return len(p), nil
 	}
-	var tooLargeErr quic.ErrMessageTooLarge
+	var tooLargeErr ErrMessageTooLarge
 	if !errors.As(err, &tooLargeErr) {
 		return
 	}
