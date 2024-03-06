@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/binary"
 	"errors"
+	"fmt"
 	"io"
 	"math"
 	"net"
@@ -20,6 +21,12 @@ import (
 	E "github.com/sagernet/sing/common/exceptions"
 	M "github.com/sagernet/sing/common/metadata"
 )
+
+type ErrMessageTooLarge int
+
+func (e ErrMessageTooLarge) Error() string {
+	return fmt.Sprintf("message too large (maximum: %d bytes)", e)
+}
 
 var udpMessagePool = sync.Pool{
 	New: func() interface{} {
@@ -213,7 +220,7 @@ func (c *udpPacketConn) WritePacket(buffer *buf.Buffer, destination M.Socksaddr)
 	default:
 	}
 	if buffer.Len() > 0xffff {
-		return quic.ErrMessageTooLarge(0xffff)
+		return E.New("ErrMessageTooLarge")
 	}
 	if !destination.IsValid() {
 		return E.New("invalid destination address")
@@ -241,7 +248,7 @@ func (c *udpPacketConn) WritePacket(buffer *buf.Buffer, destination M.Socksaddr)
 	if err == nil {
 		return nil
 	}
-	var tooLargeErr quic.ErrMessageTooLarge
+	var tooLargeErr ErrMessageTooLarge
 	if !errors.As(err, &tooLargeErr) {
 		return err
 	}
@@ -257,7 +264,7 @@ func (c *udpPacketConn) WriteTo(p []byte, addr net.Addr) (n int, err error) {
 	default:
 	}
 	if len(p) > 0xffff {
-		return 0, quic.ErrMessageTooLarge(0xffff)
+		return 0, E.New("ErrMessageTooLarge")
 	}
 	destination := M.SocksaddrFromNet(addr)
 	if !destination.IsValid() {
