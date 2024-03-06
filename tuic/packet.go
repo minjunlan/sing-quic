@@ -220,7 +220,7 @@ func (c *udpPacketConn) WritePacket(buffer *buf.Buffer, destination M.Socksaddr)
 	default:
 	}
 	if buffer.Len() > 0xffff {
-		return E.New("ErrMessageTooLarge")
+		return E.New("buffer.Len() > 0xffff")
 	}
 	if !destination.IsValid() {
 		return E.New("invalid destination address")
